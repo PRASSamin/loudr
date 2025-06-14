@@ -2,7 +2,7 @@
 
 ---
 
-![Preview](https://cdn.prassamin.workers.dev/item/sp-loudr-preview)
+![Preview](https://i.ibb.co/sppDyLnM/Xiao-Ying-Video-1749921081626-HD-ezgif-com-video-to-gif-converter.gif)
 
 **Elevate your sound. Enhance your experience.**
 
