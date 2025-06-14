@@ -2,7 +2,7 @@
 
 ---
 
-![Preview](https://i.ibb.co/sppDyLnM/Xiao-Ying-Video-1749921081626-HD-ezgif-com-video-to-gif-converter.gif)
+![Preview](preview.gif)
 
 **Elevate your sound. Enhance your experience.**
 
