@@ -1,33 +1,74 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# LOUDR
 
-## Getting Started
+---
 
-First, run the development server:
+![Preview](https://cdn.prassamin.workers.dev/item/sp-loudr-preview)
 
-```bash
-pnpm dev
-# or
-npm run dev
-```
+**Elevate your sound. Enhance your experience.**
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+LOUDR is a minimalist browser extension crafted to bring clarity and power to your audio. Whether you’re lost in a soft-spoken podcast, a muted video, or a subtle background track, LOUDR amplifies without distortion, delivering pure, balanced sound.
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
+- **Precision Volume Boost**
+  Smoothly increase your audio gain up to 5x, maintaining natural depth and richness.
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
+- **Intelligent Auto Optimize**
+  A unique dynamic compressor works quietly behind the scenes, balancing loudness and preventing harsh clipping.
 
-## Making production build
+- **Seamless, Universal Compatibility**
+  Effortlessly enhances audio on virtually any website, no fuss, just flawless sound.
 
-Run the following:
+- **Thoughtful User Control**
+  Simple, intuitive slider interface remembers your preferences and responds instantly.
 
-```bash
-pnpm build
-# or
-npm run build
-```
+> _Use with care._ Pushing volume too high can strain your ears and speakers. LOUDR is here to empower your audio journey, not blow it out. 🎧✨
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+---
 
-## Submit to the webstores
+### Installation
 
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+#### From Firefox Add-ons Store (Recommended)
+
+- Go to the [LOUDR Add-on Page](https://addons.mozilla.org/en-US/firefox/addon/loudr/).
+- Click **“Add to Firefox”**.
+- That’s it. Start blasting clean audios.
+
+<!-- #### Manual Installation (ZIP)
+
+- Download the latest **LOUDR** .zip from the [Releases page](https://github.com/prassamin/loudr/releases).
+- Open Firefox → about:addons → Gear Icon → "Install Add-on from file"
+- Select the downloaded .zip file
+- Boom. It’s live. (Note: Manual installs reset on browser restart) -->
+
+---
+
+### The Backstory
+
+One chill off-day, I just wanted to watch anime. Laptop open, Firefox loaded, vibes set, but the audio? Weak as hell. Laptop speakers weren’t cutting it. I tried every booster out there, and they all failed me: some couldn't handle cross-origin videos, others forgot my settings between episodes. Total buzzkill. 😩
+
+So I said, screw it, I’ll build my own. Not for fame. Not for clout. Just for peace of mind. **LOUDR** was born from that frustration, a sleek, no-BS solution to fix what others didn’t. Now I can finally binge without fiddling every damn episode.
+
+---
+
+I built LOUDR for me, first. If it helps you too, that's awesome. It's a passion project, not a corporate thing. I just wanted to watch anime and listen to music without fiddling with audio settings all the time. Now I can finally enjoy my content in peace. And I hope you will too.
+
+---
+
+### Future Plans
+
+Contemplating site-specific profiles and personalized audio modes, your feedback will shape what’s next.
+
+---
+
+### License
+
+This project is licensed under the terms in [LICENSE.md](./LICENSE.md). Read it if you care. Respect it if you use it.
+
+---
+
+### Contribution
+
+Wanna help make LOUDR louder? Fork it, break it, improve it.
+
+> Check [CONTRIBUTING.md](./CONTRIBUTING.md) before you send a PR or raise an issue.
+
+---

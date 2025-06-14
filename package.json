@@ -1,18 +1,40 @@
 {
   "name": "loudr",
-  "displayName": "Loudr",
-  "version": "0.0.1",
-  "description": "nothing for now",
+  "displayName": "LOUDR",
+  "version": "1.0.1",
+  "description": "LOUDR — Elevate your browser audio with refined volume boost and intelligent sound optimization. Crisp, powerful, effortless.",
   "author": "PRASSamin<prassamin@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/prassamin/loudr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prassamin/loudr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prassamin/loudr/issues"
+  },
+  "keywords": [
+    "audio",
+    "volume",
+    "boost",
+    "sound",
+    "optimization",
+    "browser",
+    "extension",
+    "firefox",
+    "chrome",
+    "webextension"
+  ],
   "scripts": {
-    "dev": "plasmo dev",
-    "build": "plasmo build",
-    "package": "plasmo package"
+    "dev": "plasmo dev --target=firefox-mv2",
+    "build": "plasmo build --target=firefox-mv2",
+    "package": "plasmo package --target=firefox-mv2"
   },
   "dependencies": {
     "plasmo": "0.90.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
@@ -20,12 +42,29 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "@types/webextension-polyfill": "^0.12.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.5",
     "prettier": "3.2.4",
-    "typescript": "5.3.3"
+    "tailwindcss": "^3.4.17",
+    "typescript": "5.3.3",
+    "web-ext": "^8.7.1"
   },
+  "packageManager": "pnpm@10.10.0",
   "manifest": {
+    "permissions": [
+      "storage",
+      "tabs",
+      "activeTab",
+      "scripting"
+    ],
     "host_permissions": [
-      "https://*/*"
-    ]
+      "<all_urls>"
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "{eeb9b2c3-f4f4-407f-b80e-a076f1970e9d}"
+      }
+    }
   }
 }
