@@ -1,7 +1,7 @@
 {
   "name": "loudr",
   "displayName": "LOUDR",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "LOUDR — Elevate your browser audio with refined volume boost and intelligent sound optimization. Crisp, powerful, effortless.",
   "author": "PRASSamin<prassamin@gmail.com>",
   "license": "MIT",
@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "dev": "plasmo dev --target=firefox-mv2",
-    "build": "plasmo build --target=firefox-mv2",
+    "build": "rm -rf build && plasmo build --target=firefox-mv2",
     "package": "plasmo package --target=firefox-mv2"
   },
   "dependencies": {

@@ -85,29 +85,6 @@ function Popup() {
               <span>5x</span>
             </div>
           </div>
-
-          {/* Settings Toggles */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">Auto Optimize</span>
-                <span className="text-xs text-gray-400">
-                  Enhance audio quality
-                </span>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings["auto_optimize"]}
-                  onChange={(e) => {
-                    toggleSetting("AUTO_OPTIMIZE", e.target.checked)
-                  }}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-          </div>
         </div>
 
         {/* Footer */}

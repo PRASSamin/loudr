@@ -28,11 +28,6 @@ const applyBooster = async () => {
       currentGain = msg.gain
       updateGainOnAll(currentGain)
     }
-
-    if (msg.type === "AUTO_OPTIMIZE") {
-      currentSettings.auto_optimize = msg.value
-      resetAllAudio()
-    }
   })
 }
 
@@ -51,22 +46,7 @@ const boostElement = (el: HTMLMediaElement) => {
 
   const nodes: AudioNode[] = [source, gainNode]
 
-  if (currentSettings?.auto_optimize) {
-    const compressor = audioCtx.createDynamicsCompressor()
-    compressor.threshold.setValueAtTime(-10, audioCtx.currentTime)
-    compressor.knee.setValueAtTime(20, audioCtx.currentTime)
-    compressor.ratio.setValueAtTime(12, audioCtx.currentTime)
-    compressor.attack.setValueAtTime(0.003, audioCtx.currentTime)
-    compressor.release.setValueAtTime(0.25, audioCtx.currentTime)
-
-    gainNode.connect(compressor)
-    compressor.connect(audioCtx.destination)
-
-    nodes.push(compressor)
-  } else {
-    gainNode.connect(audioCtx.destination)
-  }
-
+  gainNode.connect(audioCtx.destination)
   source.connect(gainNode)
 
   el.addEventListener("play", () => {
@@ -91,20 +71,6 @@ const updateGainOnAll = (newGain: number) => {
       gainNode.gain.value = newGain
     }
   })
-}
-
-const resetAllAudio = () => {
-  const mediaElements = document.querySelectorAll("video, audio")
-  mediaElements.forEach((el) => {
-    const nodes = (el as any)[BOOST_FLAG]
-    if (Array.isArray(nodes)) {
-      nodes.forEach((node: AudioNode) => node.disconnect())
-    }
-    delete (el as any)[BOOST_FLAG]
-    delete (el as any)[BOOST_GAIN_NODE]
-  })
-
-  boostAll()
 }
 
 applyBooster()
