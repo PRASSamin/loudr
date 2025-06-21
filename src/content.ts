@@ -1,6 +1,6 @@
 import { getSetting } from "./storage"
 
-const BOOST_FLAG = "__LOUDR_BOOSTED__"
+const BOOSTED_ELEMENTS = new WeakSet<HTMLMediaElement>()
 const BOOST_GAIN_NODE = "__LOUDR_GAIN_NODE__"
 
 export const config = {
@@ -18,7 +18,7 @@ const applyBooster = async () => {
   currentSettings = await getSetting()
   currentGain = currentSettings.gain || 1
 
-  boostAll()
+  window.addEventListener("DOMContentLoaded", boostAll, { once: true })
 
   const observer = new MutationObserver(boostAll)
   observer.observe(document.body, { childList: true, subtree: true })
@@ -32,35 +32,45 @@ const applyBooster = async () => {
 }
 
 const boostElement = (el: HTMLMediaElement) => {
-  const alreadyBoosted = (el as any)[BOOST_FLAG]
+  try {
+    const source = audioCtx.createMediaElementSource(el)
+    const gainNode = audioCtx.createGain()
+    gainNode.gain.value = currentGain
 
-  // Cleanup any previous nodes if reboosting
-  if (alreadyBoosted) {
-    const nodes = (el as any)[BOOST_FLAG]
-    nodes.forEach((node: AudioNode) => node.disconnect())
+    source.connect(gainNode)
+    gainNode.connect(audioCtx.destination)
+
+    ;(el as any)[BOOST_GAIN_NODE] = gainNode
+    BOOSTED_ELEMENTS.add(el)
+
+    // Resume if already playing 
+    if (!audioCtx || audioCtx.state === "suspended") {
+      if (!el.paused && !el.muted && el.readyState >= 2) {
+        audioCtx.resume().catch(console.warn)
+      }
+    }
+
+    // Fallback for when playback starts later
+    el.addEventListener("play", () => {
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume().catch(console.warn)
+      }
+    })
+  } catch (err) {
+    console.warn("LOUDR boost skipped:", err)
   }
-
-  const source = audioCtx.createMediaElementSource(el)
-  const gainNode = audioCtx.createGain()
-  gainNode.gain.value = currentGain
-
-  const nodes: AudioNode[] = [source, gainNode]
-
-  gainNode.connect(audioCtx.destination)
-  source.connect(gainNode)
-
-  el.addEventListener("play", () => {
-    audioCtx.resume()
-  })
-
-  // Save all nodes so we can disconnect later
-  ;(el as any)[BOOST_GAIN_NODE] = gainNode
-  ;(el as any)[BOOST_FLAG] = nodes
 }
 
 const boostAll = () => {
   const mediaElements = document.querySelectorAll("video, audio")
-  mediaElements.forEach((el) => boostElement(el as HTMLMediaElement))
+
+  for (let i = 0; i < mediaElements.length; i++) {
+    if (BOOSTED_ELEMENTS.has(mediaElements[i] as HTMLMediaElement)) {
+      continue
+    }
+    const el = mediaElements[i] as HTMLMediaElement
+    boostElement(el)
+  }
 }
 
 const updateGainOnAll = (newGain: number) => {
